@@ -13,10 +13,6 @@ var gameState = "onSling";
 
 var Bg = "bg.png";
 
-function preload() {
-    getBackgroundImage();
-}
-
 function setup(){
     var canvas = createCanvas(1200,400);
     engine = Engine.create();
@@ -48,8 +44,7 @@ function setup(){
 }
 
 function draw(){
-    if(backgroundImg)
-    background(backgroundImg);
+    background(Bg);
     noStroke();
     textSize(35);
     fill("white");
@@ -95,17 +90,4 @@ function keyPressed(){
     if(keyCode === 32){
        //slingshot.attach(bird.body);
     }
-}
-async function getBackgroundImage(){
-    var response = await fetch("https://worldtimeapi.org/api/timezone/America/Los_Angeles");
-    var responseJSON = await response.json();
-    var dateTime = responseJSON.datetime;
-    var hour = dateTime.slice(11,13);
-    if(hour>=06 && hour<=19){
-        Bg = "bg.png";
-    }
-    else{
-        Bg = "bg2.jpg";
-    }
-    backgroundImg = loadImage(Bg);
 }
